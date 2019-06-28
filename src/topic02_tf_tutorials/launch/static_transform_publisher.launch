@@ -1,0 +1,5 @@
+<launch>
+
+ <node pkg="tf" type="static_transform_publisher" name="frame_a_to_frame_b" args="1 2 3 0.1 0.2 0.3 frame_a frame_b 10" />
+
+</launch>
