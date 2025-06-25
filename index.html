@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAISE 2025 - International Summer School on Robotics & AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #764ba2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" opacity="0.3" d="M0,300L50,316.7C100,333,200,367,300,350C400,333,500,267,600,250C700,233,800,267,900,283.3C1000,300,1100,300,1150,300L1200,300L1200,600L1150,600C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600L0,600Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .hero-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ffd700;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            padding: 3rem 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #764ba2;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        /* Theme Section */
+        .theme-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .theme-highlight {
+            background: rgba(118, 75, 162, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #764ba2;
+            margin: 1rem 0;
+        }
+
+        /* Daily Program */
+        .day-program {
+            display: grid;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .day-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .day-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .day-number {
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .time-slot {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .time-slot h5 {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Target Audience */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .audience-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 4px solid #667eea;
+        }
+
+        .audience-card h4 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+
+        /* Fees Table */
+        .fees-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .fees-table th,
+        .fees-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .fees-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+
+        .fees-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Learning Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .outcome-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .outcome-item::before {
+            content: "✓";
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        /* Faculty */
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .faculty-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+
+        .faculty-card h4 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .faculty-card .title {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffd700;
+            color: #333;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">RAISE 2025</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#program">Program</a></li>
+                        <li><a href="#audience">Audience</a></li>
+                        <li><a href="#faculty">Faculty</a></li>
+                        <li><a href="#registration">Registration</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>RAISE 2025</h1>
+            <h2>International Summer School on Robotics & Artificial Intelligence in Systems Engineering</h2>
+            
+            <div class="hero-details">
+                <div class="hero-card">
+                    <h3>📅 Dates</h3>
+                    <p>14–16 July 2025</p>
+                </div>
+                <div class="hero-card">
+                    <h3>📍 Venue</h3>
+                    <p>CRNS-Sfax, Tunisia</p>
+                </div>
+                <div class="hero-card">
+                    <h3>🌐 Website</h3>
+                    <p>raiseschool.github.io</p>
+                </div>
+                <div class="hero-card">
+                    <h3>🎯 Theme</h3>
+                    <p>AI-Empowered Robotics for Smart Agriculture</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-content">
+        <div class="container">
+            <section id="about" class="section theme-section">
+                <h2>About RAISE 2025</h2>
+                <div class="theme-highlight">
+                    <p>RAISE 2025 condenses the essentials of modern robotics and AI into an intensive three-day boot camp that blends theory, hands-on practice, and a team challenge. This year's unifying theme is <strong>"AI-Empowered Robotics for Smart Agriculture."</strong></p>
+                    <p>Participants learn to design mobile robots that diagnose plant-health conditions with computer vision and Large-Language-Model (LLM) reasoning, then recommend – or autonomously execute – remedial actions.</p>
+                </div>
+            </section>
+
+            <section id="program" class="section">
+                <h2>Daily Program</h2>
+                <div class="day-program">
+                    <div class="day-card">
+                        <h4><span class="day-number">1</span>ROS 2 Foundations for Field Robots</h4>
+                        
+                        <div class="time-slot">
+                            <h5>09:00 – 12:00 | Morning Session</h5>
+                            <ul>
+                                <li>ROS 2 computation graph</li>
+                                <li>Topics, services & actions</li>
+                                <li>Publishing velocity commands (geometry_msgs/Twist)</li>
+                                <li>Frame transforms & odometry</li>
+                                <li>Reactive obstacle avoidance</li>
+                                <li>Demo: navigating between crop rows</li>
+                            </ul>
+                        </div>
+
+                        <div class="time-slot">
+                            <h5>13:00 – 16:00 | Hands-On Lab</h5>
+                            <p>Fork pre-written GitHub repo → fill in missing nodes & launch files to:</p>
+                            <ol>
+                                <li>Drive a simulated robot in Gazebo</li>
+                                <li>Deploy code on Turtlebot-like platform in a mini-greenhouse</li>
+                            </ol>
+                        </div>
+
+                        <div class="time-slot">
+                            <h5>16:15 – 17:00 | Assessment</h5>
+                            <p>ExamGPT mini-quiz #1 (auto-graded). ≥70% = Level-1 Certificate</p>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <h4><span class="day-number">2</span>AI & Computer Vision for Plant Diagnostics</h4>
+                        
+                        <div class="time-slot">
+                            <h5>09:00 – 12:00 | Morning Session</h5>
+                            <ul>
+                                <li>AI evolution: from AlexNet → Generative AI → Agentic AI</li>
+                                <li>Intro to vision-language models (OpenAI GPT-4o / Google Gemini)</li>
+                                <li>YOLOv10 pipeline for real-time plant detection</li>
+                                <li>Prompt-engineering LLMs for symptom classification</li>
+                            </ul>
+                        </div>
+
+                        <div class="time-slot">
+                            <h5>13:00 – 16:00 | Hands-On Lab</h5>
+                            <ol>
+                                <li>Train / fine-tune YOLO on supplied tomato-leaf dataset</li>
+                                <li>Call Gemini-Vision API to label leaf ailments</li>
+                                <li>Fuse detections & LLM output into a ROS 2 diagnostic topic</li>
+                            </ol>
+                        </div>
+
+                        <div class="time-slot">
+                            <h5>16:15 – 17:00 | Assessment</h5>
+                            <p>ExamGPT mini-quiz #2. ≥70% = Level-2 Certificate</p>
+                        </div>
+                    </div>
+
+                    <div class="day-card">
+                        <h4><span class="day-number">3</span>Integrated Challenge & Awards</h4>
+                        
+                        <div class="time-slot">
+                            <h5>09:00 – 15:00 | Team Challenge</h5>
+                            <p>Teams (4–5 members) build and test a robot that:</p>
+                            <ul>
+                                <li>Navigates 10 m crop row with obstacles</li>
+                                <li>Detects plant health issues in real time</li>
+                                <li>Publishes recommended treatment via ROS 2</li>
+                            </ul>
+                            <p><strong>Scoring:</strong> navigation (30%), detection accuracy (40%), actionable recommendations (20%), robustness & teamwork (10%)</p>
+                        </div>
+
+                        <div class="time-slot">
+                            <h5>15:00 – 17:00 | Awards Ceremony</h5>
+                            <ul>
+                                <li>Live demos → judging → prize ceremony</li>
+                                <li>Gold / Silver / Bronze trophies + sponsor gifts</li>
+                                <li>Certificates of Completion / Participation issued</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="audience" class="section">
+                <h2>Target Audience & Prerequisites</h2>
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <h4>🎓 Student Track</h4>
+                        <p><strong>Intended for:</strong> BSc / MSc students in EE, CS, Mechatronics</p>
+                        <p><strong>Entry Skills:</strong> Basic Python + linear algebra</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>🔬 Academic / PhD Track</h4>
+                        <p><strong>Intended for:</strong> Researchers & lecturers</p>
+                        <p><strong>Entry Skills:</strong> Intro ROS/AI helpful</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>🏭 Industrial Track</h4>
+                        <p><strong>Intended for:</strong> Engineers & developers</p>
+                        <p><strong>Entry Skills:</strong> C++/Python & Linux basics</p>
+                    </div>
+                </div>
+                <div class="theme-highlight">
+                    <p><strong>Technical Requirements:</strong> A laptop with Ubuntu 22.04 LTS, Docker installed, and 20 GB free disk space is required. All extra hardware is provided on-site.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Learning Outcomes</h2>
+                <p>By the end of RAISE 2025, participants will be able to:</p>
+                <div class="outcomes-grid">
+                    <div class="outcome-item">Deploy ROS 2 stacks for mobile manipulation and navigation</div>
+                    <div class="outcome-item">Implement YOLO-based vision pipelines tailored to agricultural crops</div>
+                    <div class="outcome-item">Integrate LLMs for multimodal (image + text) reasoning in ROS ecosystems</div>
+                    <div class="outcome-item">Prototype end-to-end agri-robot solutions within tight time-frames</div>
+                    <div class="outcome-item">Collaborate cross-disciplinarily under competition pressure</div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Assessment & Certification</h2>
+                <div class="theme-highlight">
+                    <h3>ExamGPT Quizzes</h3>
+                    <p>Two short, auto-graded MCQ/short-answer tests at the end of Days 1 & 2.</p>
+                    
+                    <h3>Certificates</h3>
+                    <ul>
+                        <li><strong>Certificate of Completion:</strong> ≥70% on both quizzes plus active challenge participation</li>
+                        <li><strong>Certificate of Participation:</strong> All other attendees</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="faculty" class="section">
+                <h2>Faculty & Organization</h2>
+                <div class="faculty-grid">
+                    <div class="faculty-card">
+                        <h4>Prof. Omar Cheikhrouhou</h4>
+                        <div class="title">General Chair</div>
+                        <p>ENET'Com, Tunisia</p>
+                    </div>
+                    <div class="faculty-card">
+                        <h4>Prof. Anis Koubaa</h4>
+                        <div class="title">Technical Program Lead</div>
+                        <p>Alfaisal University / ScaleX Innovation</p>
+                    </div>
+                </div>
+                <p><strong>Scientific Committee:</strong> H. Bentaher, H. Chouikhi, N. Ayadi, M. Bahloul, Y. Bouteraa, A. Echtioui, M. Kharrat</p>
+            </section>
+
+            <section id="registration" class="section">
+                <h2>Registration & Fees</h2>
+                <table class="fees-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Fee (TND)</th>
+                            <th>Includes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Student</td>
+                            <td>400</td>
+                            <td>All sessions, coffee breaks, challenge kit, certificate</td>
+                        </tr>
+                        <tr>
+                            <td>Academic / PhD</td>
+                            <td>500</td>
+                            <td>+ Digital proceedings</td>
+                        </tr>
+                        <tr>
+                            <td>Industrial</td>
+                            <td>700</td>
+                            <td>+ Networking dinner & sponsor booth access</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="theme-highlight">
+                    <p><strong>Scholarships:</strong> A limited number of need-based waivers are available; apply via <strong>raiseschool2025@gmail.com</strong> by <strong>15 June 2025</strong>.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Logistics & Resources</h2>
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <h4>📦 Pre-school Pack</h4>
+                        <p>GitHub repos, Docker images, reading list, and VM snapshot sent to confirmed attendees on 1 July 2025</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>🤖 On-site Hardware</h4>
+                        <p>Jetson Nano robot kits with depth cameras, Li-Po batteries, QR-coded plant stands</p>
+                    </div>
+                    <div class="audience-card">
+                        <h4>🛠️ Support</h4>
+                        <p>Slack workspace + nightly office hours for troubleshooting</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join RAISE 2025?</h2>
+            <p>Don't miss this opportunity to master AI-powered robotics for smart agriculture!</p>
+            <a href="https://raiseschool.github.io/RAISE2025/" class="cta-button">Visit Official Website</a>
+            <a href="mailto:raiseschool2025@gmail.com" class="cta-button">Apply for Scholarship</a>
+        </div>
+    </section>
+
+    <script>
+        // Progress bar functionality
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile menu toggle (basic implementation)
+        const navLinks = document.querySelector('.nav-links');
+        const header = document.querySelector('header');
+        
+        // Add mobile menu button for smaller screens
+        if (window.innerWidth <= 768) {
+            const menuButton = document.createElement('button');
+            menuButton.innerHTML = '☰';
+            menuButton.style.cssText = 'background: none; border: none; font-size: 1.5rem; cursor: pointer;';
+            
+            menuButton.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            header.querySelector('.header-content').appendChild(menuButton);
+        }
+    </script>
+</body>
+</html>
